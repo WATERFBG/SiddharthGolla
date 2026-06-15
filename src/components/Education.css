@@ -1,0 +1,58 @@
+.edu-card {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.edu-icon {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  background: rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--purple);
+}
+
+.edu-degree {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.edu-school {
+  color: var(--cyan);
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.edu-meta {
+  display: flex;
+  gap: 16px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.edu-meta span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.edu-desc {
+  color: var(--muted);
+  font-size: 0.93rem;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 600px) {
+  .edu-card { flex-direction: column; }
+}
