@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/SiddharthGolla/static/css/main.e81bd5e0.css",
+    "main.js": "/SiddharthGolla/static/js/main.dc6b27b8.js",
+    "static/js/453.c4eee497.chunk.js": "/SiddharthGolla/static/js/453.c4eee497.chunk.js",
+    "index.html": "/SiddharthGolla/index.html",
+    "main.e81bd5e0.css.map": "/SiddharthGolla/static/css/main.e81bd5e0.css.map",
+    "main.dc6b27b8.js.map": "/SiddharthGolla/static/js/main.dc6b27b8.js.map",
+    "453.c4eee497.chunk.js.map": "/SiddharthGolla/static/js/453.c4eee497.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e81bd5e0.css",
+    "static/js/main.dc6b27b8.js"
+  ]
+}
