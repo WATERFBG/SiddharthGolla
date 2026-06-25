@@ -1,15 +1,19 @@
 {
   "files": {
-    "main.css": "/SiddharthGolla/static/css/main.2af3138f.css",
-    "main.js": "/SiddharthGolla/static/js/main.8cc035a7.js",
+    "main.css": "/SiddharthGolla/static/css/main.b9c02d43.css",
+    "main.js": "/SiddharthGolla/static/js/main.845c31c1.js",
     "static/js/453.c4eee497.chunk.js": "/SiddharthGolla/static/js/453.c4eee497.chunk.js",
+    "static/media/edit4.mp4": "/SiddharthGolla/static/media/edit4.5f7342efc54203d7732d.mp4",
+    "static/media/edit1.mp4": "/SiddharthGolla/static/media/edit1.f72d9c7f8503a1379b43.mp4",
+    "static/media/edit2.mp4": "/SiddharthGolla/static/media/edit2.e392bd6c7344cafd7cfd.mp4",
+    "static/media/edit3.mp4": "/SiddharthGolla/static/media/edit3.2f35c0227670d38a3666.mp4",
     "index.html": "/SiddharthGolla/index.html",
-    "main.2af3138f.css.map": "/SiddharthGolla/static/css/main.2af3138f.css.map",
-    "main.8cc035a7.js.map": "/SiddharthGolla/static/js/main.8cc035a7.js.map",
+    "main.b9c02d43.css.map": "/SiddharthGolla/static/css/main.b9c02d43.css.map",
+    "main.845c31c1.js.map": "/SiddharthGolla/static/js/main.845c31c1.js.map",
     "453.c4eee497.chunk.js.map": "/SiddharthGolla/static/js/453.c4eee497.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2af3138f.css",
-    "static/js/main.8cc035a7.js"
+    "static/css/main.b9c02d43.css",
+    "static/js/main.845c31c1.js"
   ]
 }
