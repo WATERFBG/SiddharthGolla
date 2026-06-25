@@ -1,4 +1,4 @@
-import { FaCode, FaChartBar, FaTools } from 'react-icons/fa';
+import { FaCode, FaChartBar, FaTools, FaFilm } from 'react-icons/fa';
 import './Skills.css';
 
 const skillGroups = [
@@ -25,6 +25,12 @@ const skillGroups = [
     title: 'Dev Tools',
     color: '#10b981',
     skills: ['GitHub', 'Git', 'Streamlit', 'Figma', 'Canva'],
+  },
+  {
+    icon: <FaFilm />,
+    title: 'Video Editing',
+    color: '#f59e0b',
+    skills: ['Premiere Pro', 'DaVinci Resolve', 'CapCut', 'After Effects', 'Color Grading', 'Motion Graphics'],
   },
 ];
 

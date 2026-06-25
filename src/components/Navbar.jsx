@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
 import './Navbar.css';
 
-const links = ['About', 'Education', 'Experience', 'Projects', 'Skills', 'Publication'];
+const links = ['About', 'Education', 'Experience', 'Projects', 'Skills', 'Publication', 'Videos'];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
