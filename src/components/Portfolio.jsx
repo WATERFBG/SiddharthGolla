@@ -1,11 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import { Menu, X, ArrowUpRight, GitBranch, Mail, Play, Volume2 } from 'lucide-react';
+import { Menu, X, ArrowUpRight, GitBranch, Mail } from 'lucide-react';
 import { useReveal, useTypewriter, useCountUp } from '../hooks/use-portfolio';
 import Cursor from './Cursor';
-import vid1 from '../videos/edit1.mp4';
-import vid2 from '../videos/edit2.mp4';
-import vid3 from '../videos/edit3.mp4';
-import vid4 from '../videos/edit4.mp4';
 
 const NAV = [
   { id: 'about', label: 'About' },
@@ -14,10 +10,7 @@ const NAV = [
   { id: 'projects', label: 'Projects' },
   { id: 'skills', label: 'Skills' },
   { id: 'publication', label: 'Publication' },
-  { id: 'videos', label: 'Videos' },
 ];
-
-const VIDEOS = [vid1, vid2, vid3, vid4];
 
 /* =================== NAV =================== */
 function Navbar() {
@@ -127,7 +120,7 @@ function Hero() {
 
       <div className="mt-20 border-y border-[#1e1e1e]">
         <div className="mx-auto grid max-w-[1400px] grid-cols-1 divide-y divide-[#1e1e1e] px-5 sm:divide-y-0 sm:divide-x sm:px-10 md:grid-cols-3">
-          <StatBlock value={3} suffix="+" label="Machine Learning Projects" />
+          <StatBlock value={4} suffix="+" label="Projects Shipped" />
           <StatBlock value={1} label="IEEE Published Research Paper" textValue prefix="IEEE · " />
           <StatBlock value={74.5} suffix="%" label="WESAD Model Accuracy" decimals={1} />
         </div>
@@ -268,6 +261,7 @@ const FEATURE = {
 const OTHER = [
   { num: '02', title: 'Employee Attrition Risk Prediction', category: 'HR Analytics · Machine Learning', description: 'Predictive system on 10,000 employee records across 35 features. Logistic Regression, Random Forest and Gradient Boosting with SMOTE class-balancing, shipped as an interactive Streamlit app.', tags: ['Python','Scikit-learn','SMOTE','Streamlit','Pandas'] },
   { num: '03', title: 'Stress Analytics — Wearables × IoT', category: 'IoT · Real-Time Analytics', description: 'Trained LightGBM on the WESAD physiological dataset achieving 74.5% accuracy. ESP32 wearable streams sensor data live into a real-time Streamlit dashboard.', tags: ['LightGBM','ESP32','WESAD','Streamlit','Python'] },
+  { num: '04', title: 'Mana Avanigadda — Civic Governance Platform', category: 'Full-Stack · Civic Tech', description: 'Constituency-wide grievance reporting for Avanigadda, AP. Residents file problems with photos and track resolution; volunteers and mandal admins triage them through a role-based workflow backed by phone-OTP auth and Postgres-enforced constraints.', tags: ['React','Node.js','Express','PostgreSQL','Prisma','Cloudflare R2'], url: 'https://manaavanigadda.com/' },
 ];
 
 function Projects() {
@@ -328,9 +322,8 @@ function ProjectCard({ p }) {
     el.style.transform = `perspective(1100px) rotateX(${-y * 5}deg) rotateY(${x * 5}deg) translateY(-4px)`;
   };
   const onLeave = () => { if (cardRef.current) cardRef.current.style.transform = ''; };
-  return (
-    <div ref={ref} className="r-up">
-      <article ref={cardRef} onMouseMove={onMove} onMouseLeave={onLeave} className="group flex h-full flex-col gap-6 border border-[#1e1e1e] p-7 sm:p-8" style={{ transition: 'transform 0.3s ease, border-color 0.3s' }}>
+  const card = (
+      <article ref={cardRef} onMouseMove={onMove} onMouseLeave={onLeave} className={`group flex h-full flex-col gap-6 border border-[#1e1e1e] p-7 sm:p-8 ${p.url ? 'hover:border-[#e8ff00]/40' : ''}`} style={{ transition: 'transform 0.3s ease, border-color 0.3s' }}>
         <div className="flex items-baseline justify-between">
           <span className="text-5xl font-black leading-none text-[#e8ff00]">{p.num}</span>
           <ArrowUpRight size={18} className="text-[#6b6b6b] transition-colors group-hover:text-[#e8ff00]" />
@@ -344,17 +337,26 @@ function ProjectCard({ p }) {
           {p.tags.map((t) => <span key={t}>{t}</span>)}
         </div>
       </article>
+  );
+  return (
+    <div ref={ref} className="r-up">
+      {p.url ? (
+        <a href={p.url} target="_blank" rel="noreferrer" aria-label={`${p.title} — open live site`} className="block h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[#e8ff00]">
+          {card}
+        </a>
+      ) : card}
     </div>
   );
 }
 
 /* =================== SKILLS =================== */
 const SKILL_GROUPS = [
-  { name: 'Languages', items: ['Python','SQL'] },
+  { name: 'Languages', items: ['Python','SQL','JavaScript'] },
   { name: 'Data Analysis & ML', items: ['Pandas','NumPy','Matplotlib','Seaborn','Scikit-learn','TensorFlow','LightGBM'] },
   { name: 'Visualization & BI', items: ['Power BI','Tableau','Excel','Google Analytics','Jamovi'] },
   { name: 'Dev Tools', items: ['GitHub','Git','Streamlit','Figma','Canva'] },
   { name: 'Video Editing', items: ['Premiere Pro','DaVinci Resolve','CapCut','After Effects','Color Grading','Motion Graphics'] },
+  { name: 'Web & Full-Stack', items: ['React','Vite','Tailwind CSS','Node.js','Express','REST APIs','JWT Auth','PostgreSQL','Prisma','Supabase','Cloudflare R2','Netlify','Render'] },
 ];
 
 function Skills() {
@@ -417,90 +419,6 @@ function Publication() {
   );
 }
 
-/* =================== VIDEOS =================== */
-function VideoCard({ src, onOpen, idx }) {
-  const videoRef = useRef(null);
-
-  useEffect(() => {
-    const el = videoRef.current;
-    if (!el) return;
-    el.muted = true;
-    el.loop = true;
-    el.load();
-    const tryPlay = () => el.play().catch(() => {});
-    el.addEventListener('loadeddata', tryPlay);
-    const obs = new IntersectionObserver(
-      (entries) => entries.forEach((e) => { if (e.isIntersecting) el.play().catch(() => {}); else el.pause(); }),
-      { threshold: 0.1 },
-    );
-    obs.observe(el);
-    return () => { el.removeEventListener('loadeddata', tryPlay); obs.disconnect(); };
-  }, [src]);
-
-  return (
-    <button onClick={onOpen} data-hover className="group relative overflow-hidden border border-[#1e1e1e]" style={{ aspectRatio: '9/16' }}>
-      <video ref={videoRef} src={src} playsInline preload="auto" className="h-full w-full object-cover" />
-      <div className="absolute inset-x-0 top-0 flex items-start justify-between p-3">
-        <span className="font-mono text-xs uppercase tracking-widest text-[#f0ede8]/80">REEL / {String(idx + 1).padStart(2, '0')}</span>
-      </div>
-      <div className="absolute inset-0 grid place-items-center opacity-0 transition-opacity duration-300 group-hover:opacity-100" style={{ background: 'rgba(0,0,0,0.4)' }}>
-        <div className="grid h-14 w-14 place-items-center rounded-full bg-[#e8ff00] text-black">
-          <Play size={20} className="ml-0.5" />
-        </div>
-      </div>
-    </button>
-  );
-}
-
-function Videos() {
-  const [openSrc, setOpenSrc] = useState(null);
-  const modalRef = useRef(null);
-
-  useEffect(() => {
-    if (!openSrc) return;
-    document.body.style.overflow = 'hidden';
-    const el = modalRef.current;
-    if (el) { el.muted = false; el.load(); el.play().catch(() => {}); }
-    const onKey = (e) => { if (e.key === 'Escape') setOpenSrc(null); };
-    window.addEventListener('keydown', onKey);
-    return () => { document.body.style.overflow = ''; window.removeEventListener('keydown', onKey); };
-  }, [openSrc]);
-
-  return (
-    <section id="videos" className="border-t border-[#1e1e1e] py-28 sm:py-36">
-      <div className="mx-auto max-w-[1400px] px-5 sm:px-10">
-        <SectionHeader num="06 — REEL" eyebrow="Motion" title="Cuts & Edits." />
-        <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
-          {VIDEOS.map((v, i) => (
-            <RevealWrap key={v}>
-              <VideoCard src={v} idx={i} onOpen={() => setOpenSrc(v)} />
-            </RevealWrap>
-          ))}
-        </div>
-      </div>
-
-      {openSrc && (
-        <div className="fixed inset-0 z-[100] grid place-items-center p-4 backdrop-blur-sm" style={{ background: 'rgba(0,0,0,0.95)' }} onClick={() => setOpenSrc(null)}>
-          <button aria-label="Close" className="absolute right-6 top-6 grid h-11 w-11 place-items-center border border-[#1e1e1e] text-[#f0ede8] hover:border-[#e8ff00] hover:text-[#e8ff00]" onClick={() => setOpenSrc(null)}>
-            <X size={18} />
-          </button>
-          <div className="relative w-full max-w-md" style={{ maxHeight: '92vh' }} onClick={(e) => e.stopPropagation()}>
-            <video ref={modalRef} src={openSrc} controls playsInline className="h-full w-full" />
-            <p className="mt-3 flex items-center justify-center gap-2 font-mono text-xs uppercase tracking-widest text-[#6b6b6b]">
-              <Volume2 size={13} /> Sound on
-            </p>
-          </div>
-        </div>
-      )}
-    </section>
-  );
-}
-
-function RevealWrap({ children }) {
-  const ref = useReveal();
-  return <div ref={ref} className="r-up">{children}</div>;
-}
-
 /* =================== FOOTER =================== */
 function Footer() {
   const ref = useReveal();
@@ -508,7 +426,7 @@ function Footer() {
     <footer id="contact" className="border-t border-[#1e1e1e]">
       <div className="mx-auto max-w-[1400px] px-5 py-28 sm:px-10 sm:py-36">
         <div className="mb-6 flex items-center gap-4">
-          <span className="font-mono text-xs uppercase tracking-widest text-[#e8ff00]">07 — END</span>
+          <span className="font-mono text-xs uppercase tracking-widest text-[#e8ff00]">06 — END</span>
           <span className="block h-px w-12 bg-[#e8ff00]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#6b6b6b]">Contact</span>
         </div>
@@ -554,7 +472,6 @@ export default function Portfolio() {
       <Projects />
       <Skills />
       <Publication />
-      <Videos />
       <Footer />
     </main>
   );

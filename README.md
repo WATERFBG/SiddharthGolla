@@ -1,3 +1,15 @@
+# Siddharth Golla — Portfolio
+
+**Live site → [siddharth-golla6.github.io/SiddharthGolla](https://siddharth-golla6.github.io/SiddharthGolla/)**
+
+Single-page portfolio built with React and Tailwind CSS — editorial/magazine
+layout covering education, experience, selected projects, skills, and the
+IEEE-published research paper.
+
+Deployed to GitHub Pages from the `gh-pages` branch via `npm run deploy`.
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
