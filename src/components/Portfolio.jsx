@@ -114,6 +114,9 @@ function Hero() {
             <a href="https://github.com/gssai2003" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border border-[#1e1e1e] px-5 py-3 font-mono text-xs uppercase tracking-widest text-[#f0ede8] transition-colors duration-300 hover:border-[#f0ede8]">
               <GitBranch size={13} /> GitHub
             </a>
+            <a href="https://www.linkedin.com/in/siddharthagolla" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border border-[#1e1e1e] px-5 py-3 font-mono text-xs uppercase tracking-widest text-[#f0ede8] transition-colors duration-300 hover:border-[#f0ede8]">
+              <LinkedinIcon size={13} /> LinkedIn
+            </a>
           </div>
         </div>
       </div>
@@ -174,6 +177,15 @@ function Marquee({ items }) {
         </span>
       ))}
     </div>
+  );
+}
+
+/* =================== ICONS =================== */
+function LinkedinIcon({ size = 13 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+      <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.37 4.26 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zm1.78 13.02H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z" />
+    </svg>
   );
 }
 
@@ -451,6 +463,7 @@ function Footer() {
           <p>© {new Date().getFullYear()} — Siddharth Golla / All rights reserved</p>
           <div className="flex items-center gap-5">
             <a href="https://github.com/gssai2003" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 hover:text-[#e8ff00]"><GitBranch size={12} /> GitHub</a>
+            <a href="https://www.linkedin.com/in/siddharthagolla" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 hover:text-[#e8ff00]"><LinkedinIcon size={12} /> LinkedIn</a>
             <a href="mailto:gssai2003@gmail.com" className="inline-flex items-center gap-1.5 hover:text-[#e8ff00]"><Mail size={12} /> Email</a>
             <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-[#e8ff00]">↑ Back to top</button>
           </div>
